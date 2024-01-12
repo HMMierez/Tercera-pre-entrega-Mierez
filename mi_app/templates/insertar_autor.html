@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insertar Autor</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #007BFF;
+        }
+
+        form {
+            margin-top: 20px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #007BFF;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <h1>Insertar Autor</h1>
+    <form method="post" action="{% url 'insertar_autor' %}">
+        {% csrf_token %}
+        <label for="{{ form.nombre.id_for_label }}">Nombre:</label>
+        {{ form.nombre }}
+        <label for="{{ form.edad.id_for_label }}">Edad:</label>
+        {{ form.edad }}
+        <!-- Ver la posibilidad de agregar mas -->
+
+        <button type="submit">Guardar Autor</button>
+    </form>
+</body>
+</html>

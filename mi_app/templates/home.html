@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido a la Tienda de Libros</title>
+    <style>
+        body {
+            background-color: #f0f0f0; /* Color de fondo */
+            color: #333; /* Color del texto */
+            font-family: 'Arial', sans-serif; /* Tipo de fuente */
+            text-align: center; /* Centrar el texto */
+            margin: 0; /* Eliminar márgenes predeterminados del cuerpo */
+            padding: 20px; /* Añadir espacio alrededor del contenido */
+        }
+
+        h1 {
+            color: #007BFF; /* Color del encabezado principal */
+        }
+
+        p {
+            margin-bottom: 20px; /* Agregar espacio debajo del párrafo */
+        }
+
+        ul {
+            list-style-type: none; /* Eliminar viñetas de la lista */
+            padding: 0; /* Eliminar el relleno predeterminado de la lista */
+        }
+
+        li {
+            display: inline-block; /* Mostrar elementos de lista en línea */
+            margin-right: 20px; /* Agregar espacio entre elementos de la lista */
+        }
+
+        a {
+            text-decoration: none; /* Eliminar subrayado de los enlaces */
+            color: #28a745; /* Color de los enlaces */
+            font-weight: bold; /* Hacer que los enlaces sean más audaces */
+        }
+
+        a:hover {
+            color: #218838; /* Cambiar color al pasar el ratón sobre los enlaces */
+        }
+    </style>
+</head>
+<body>
+    <h1>Bienvenido a la Tienda de Libros</h1>
+    <p>Explora nuestra colección y encuentra los mejores libros para ti.</p>
+    <ul>
+        <li><a href="{% url 'insertar_autor' %}">Insertar Autor</a></li>
+        <li><a href="{% url 'insertar_libro' %}">Insertar Libro</a></li>
+        <li><a href="{% url 'buscar' %}">Buscar</a></li>
+    </ul>
+</body>
+</html>
+
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            color: #333;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #007BFF;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        h2 {
+            margin-top: 20px;
+            color: #007BFF;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            display: none;  /* Oculta la lista por defecto */
+        }
+
+        li {
+            display: inline-block;
+            margin-right: 20px;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        li:hover {
+            color: #0056b3;
+        }
+
+        p {
+            margin-top: 20px;
+        }
+
+        .results-container {
+            margin-top: 20px;
+        }
+
+        .results-container a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Buscar</h1>
+
+    <!-- Formulario par la búsqueda -->
+    <form method="get" action="{% url 'buscar' %}">
+        <label for="query">Buscar:</label>
+        <input type="text" name="query" id="query" value="{{ query }}" required>
+        <button type="submit">Buscar</button>
+    </form>
+
+    <!-- Resultados de la búsqueda -->
+    <div class="results-container">
+        {% if query %}
+            {% if resultados.autores or resultados.libros %}
+                <h2>Resultados:</h2>
+                {% if resultados.autores %}
+                    <ul id="autores-list">
+                        {% for autor in resultados.autores %}
+                            <li onclick="mostrarDetalles('{{ autor.nombre }}', 'Autor')">{{ autor.nombre }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                {% if resultados.libros %}
+                    <ul id="libros-list">
+                        {% for libro in resultados.libros %}
+                            <li onclick="mostrarDetalles('{{ libro.titulo }}', 'Libro')">{{ libro.titulo }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% else %}
+                <p>No se encontraron resultados.</p>
+            {% endif %}
+        {% endif %}
+    </div>
+
+    <!-- Botón al menu principal -->
+    <a href="{% url 'home' %}">
+        <button>Volver al Menú Principal</button>
+    </a>
+
+    <!-- Detalles de los resultados -->
+    <div id="detalles-container"></div>
+
+    <script>
+        function mostrarDetalles(nombre, tipo) {
+            const detallesContainer = document.getElementById('detalles-container');
+            detallesContainer.innerHTML = `<p>Detalles de ${tipo}: ${nombre}</p>`;
+        }
+
+        // Muestra las listas solo si hay resultados y se ha realizado una búsqueda
+        const autoresList = document.getElementById('autores-list');
+        const librosList = document.getElementById('libros-list');
+
+        if (autoresList && autoresList.children.length > 0) {
+            autoresList.style.display = 'block';
+        }
+
+        if (librosList && librosList.children.length > 0) {
+            librosList.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insertar Libro</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #007BFF;
+        }
+
+        form {
+            margin-top: 20px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #007BFF;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Insertar Libro</h1>
+    <form method="post" action="{% url 'insertar_libro' %}">
+        {% csrf_token %}
+        <label for="{{ form.titulo.id_for_label }}">Título:</label>
+        {{ form.titulo }}
+        <label for="{{ form.autor.id_for_label }}">Autor:</label>
+        {{ form.autor }}
+        <label for="{{ form.genero.id_for_label }}">Género:</label>
+        {{ form.genero }}
+        <!-- se podria agregar mas, ver despues-->
+
+        <button type="submit">Guardar Libro</button>
+    </form>
+
+    <!-- volver al home -->
+    <a href="{% url 'home' %}">Volver al Home</a>
+</body>
+</html>
